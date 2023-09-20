@@ -42,37 +42,9 @@ class _MyAppState extends State<MyApp> {
   static final ValueNotifier<ThemeMode> themeNotifier =
       ValueNotifier(ThemeMode.dark);
 
-  bool isSubForTruth = false;
-  bool isSubForMost = false;
-  bool isSubForRather = false;
-
   @override
   void initState() {
     super.initState();
-
-    Purchases.addCustomerInfoUpdateListener(
-        (customerInfo) => updateCustomerStatus());
-    updateCustomerStatus();
-  }
-
-  Future updateCustomerStatus() async {
-    final customerInfo = await Purchases.getCustomerInfo();
-
-    setState(() {
-      final entitlement = customerInfo.entitlements.active['Truth or Dare'];
-      isSubForTruth = entitlement != null;
-    });
-
-    setState(() {
-      final entitlement =
-          customerInfo.entitlements.active['Who is most likely'];
-      isSubForMost = entitlement != null;
-    });
-
-    setState(() {
-      final entitlement = customerInfo.entitlements.active['Would you rather?'];
-      isSubForRather = entitlement != null;
-    });
   }
 
   @override

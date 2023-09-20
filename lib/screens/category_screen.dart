@@ -42,6 +42,8 @@ class _CategoryScreenState extends State<CategoryScreen>
 
     _animationController.forward();
 
+    Purchases.getCustomerInfo();
+    PurchaseApi.init();
     Purchases.addCustomerInfoUpdateListener(
         (customerInfo) => updateCustomerStatus());
     updateCustomerStatus();
@@ -78,13 +80,12 @@ class _CategoryScreenState extends State<CategoryScreen>
     Offerings offerings = await Purchases.getOfferings();
 
     Package? packageForMost =
-        offerings.getOffering("Who is most likely")!.getPackage("Lifetime");
+        offerings.getOffering("Who is most likely")!.lifetime;
 
-    Package? packageForTruth =
-        offerings.getOffering("Truth or Dare")!.getPackage("Lifetime");
+    Package? packageForTruth = offerings.getOffering("Truth or Dare")!.lifetime;
 
     Package? packageForRather =
-        offerings.getOffering("Would you rather?")!.getPackage("Lifetime");
+        offerings.getOffering("Would you rather?")!.lifetime;
 
     if (category.id == 'c1' ||
         category.id == 'c2' ||
@@ -139,25 +140,24 @@ class _CategoryScreenState extends State<CategoryScreen>
                     //     'USD',
                     //   ),
                     // );
-                    Navigator.pop(context);
+                    updateCustomerStatus();
                   }
                 } catch (e) {
                   debugPrint('Failed to purchase category!');
                 }
                 try {
                   if (category.id == 'c4' && isSubForTruth == false) {
-                    await Purchases.purchasePackage(packageForTruth!);
-                    // await Purchases.purchaseStoreProduct(
-                    //   const StoreProduct(
-                    //     'bonderful_1.99_truth',
-                    //     'Purchase will unlock this category',
-                    //     'Truth or Dare',
-                    //     1.99,
-                    //     'onenintynine',
-                    //     'USD',
-                    //   ),
-                    // );
-                    Navigator.pop(context);
+                    // await Purchases.purchasePackage(packageForTruth!);
+                    await Purchases.purchaseStoreProduct(
+                      const StoreProduct(
+                        'bonderful_1.99_truth',
+                        'Purchase will unlock this category',
+                        'Truth or Dare',
+                        1.99,
+                        'onenintynine',
+                        'USD',
+                      ),
+                    );
                   }
                 } catch (e) {
                   debugPrint('Failed to purchase category!');
@@ -165,7 +165,6 @@ class _CategoryScreenState extends State<CategoryScreen>
                 try {
                   if (category.id == 'c11' && isSubForRather == false) {
                     await Purchases.purchasePackage(packageForRather!);
-                    Navigator.pop(context);
                   }
                 } catch (e) {
                   debugPrint('Failed to purchase category!');
