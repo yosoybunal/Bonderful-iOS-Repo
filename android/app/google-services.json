@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "667249451741",
+    "project_id": "flutter-app-herkese-sor",
+    "storage_bucket": "flutter-app-herkese-sor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667249451741:android:d5895805299022beccb134",
+        "android_client_info": {
+          "package_name": "com.berkay.bonderful"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667249451741-oh8vi6u7jmu20k18hqlrue8imh2hqd5e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlx-JUm3KLHgzblwOcXbQc0fw25_Oo1JU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667249451741-oh8vi6u7jmu20k18hqlrue8imh2hqd5e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "667249451741-br6n3bla0hv383ormveftn6t0d44qvuu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.herkeseSor"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667249451741:android:4bcf884b600f8ce9ccb134",
+        "android_client_info": {
+          "package_name": "com.example.herkese_sor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667249451741-oh8vi6u7jmu20k18hqlrue8imh2hqd5e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlx-JUm3KLHgzblwOcXbQc0fw25_Oo1JU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667249451741-oh8vi6u7jmu20k18hqlrue8imh2hqd5e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "667249451741-br6n3bla0hv383ormveftn6t0d44qvuu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.herkeseSor"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
