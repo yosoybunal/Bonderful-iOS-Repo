@@ -75,6 +75,16 @@ class _CategoryScreenState extends State<CategoryScreen>
 
   void _selectCategory(BuildContext context, Category category) async {
     // final customerInfo = await Purchases.getCustomerInfo();
+    Offerings offerings = await Purchases.getOfferings();
+
+    Package? packageForMost =
+        offerings.getOffering("Who is most likely")!.getPackage("Lifetime");
+
+    Package? packageForTruth =
+        offerings.getOffering("Truth or Dare")!.getPackage("Lifetime");
+
+    Package? packageForRather =
+        offerings.getOffering("Would you rather?")!.getPackage("Lifetime");
 
     if (category.id == 'c1' ||
         category.id == 'c2' ||
@@ -85,9 +95,9 @@ class _CategoryScreenState extends State<CategoryScreen>
         category.id == 'c9' ||
         category.id == 'c10' ||
         category.id == 'c12' ||
-        isSubForMost == true ||
-        isSubForRather == true ||
-        isSubForTruth == true) {
+        category.id == 'c3' && isSubForMost == true ||
+        category.id == 'c4' && isSubForTruth == true ||
+        category.id == 'c11' && isSubForRather == true) {
       final filteredQuestions = dummyQuestions
           .where((question) => question.categories.contains(category.id))
           .toList();
@@ -112,29 +122,31 @@ class _CategoryScreenState extends State<CategoryScreen>
           actions: <CupertinoActionSheetAction>[
             CupertinoActionSheetAction(
               child: Text(
-                isSubForMost ? 'kilitsiz' : 'unlock',
+                isSubForMost ? 'kilitsiz' : 'Continue',
                 style: const TextStyle(color: CupertinoColors.link),
               ),
               onPressed: () async {
                 try {
-                  if (category.id == 'c3') {
-                    await Purchases.purchaseStoreProduct(
-                      const StoreProduct(
-                        'bonderful_1.99_mostlikely',
-                        'Purchase will unlock this category',
-                        'Who is most likely',
-                        1.99,
-                        'onenintynine',
-                        'USD',
-                      ),
-                    );
+                  if (category.id == 'c3' && isSubForMost == false) {
+                    await Purchases.purchasePackage(packageForMost!);
+                    // await Purchases.purchaseStoreProduct(
+                    //   const StoreProduct(
+                    //     'bonderful_1.99_mostlikely',
+                    //     'Purchase will unlock this category',
+                    //     'Who is most likely',
+                    //     1.99,
+                    //     'onenintynine',
+                    //     'USD',
+                    //   ),
+                    // );
+                    Navigator.pop(context);
                   }
                 } catch (e) {
                   debugPrint('Failed to purchase category!');
                 }
                 try {
-                  if (category.id == 'c4') {
-                    await PurchaseApi.purchasePackage();
+                  if (category.id == 'c4' && isSubForTruth == false) {
+                    await Purchases.purchasePackage(packageForTruth!);
                     // await Purchases.purchaseStoreProduct(
                     //   const StoreProduct(
                     //     'bonderful_1.99_truth',
@@ -145,22 +157,15 @@ class _CategoryScreenState extends State<CategoryScreen>
                     //     'USD',
                     //   ),
                     // );
+                    Navigator.pop(context);
                   }
                 } catch (e) {
                   debugPrint('Failed to purchase category!');
                 }
                 try {
-                  if (category.id == 'c11') {
-                    await Purchases.purchaseStoreProduct(
-                      const StoreProduct(
-                        'bonderful_1.99_category',
-                        'Purchase will unlock this category',
-                        'would you rather',
-                        1.99,
-                        'onenintynine',
-                        'USD',
-                      ),
-                    );
+                  if (category.id == 'c11' && isSubForRather == false) {
+                    await Purchases.purchasePackage(packageForRather!);
+                    Navigator.pop(context);
                   }
                 } catch (e) {
                   debugPrint('Failed to purchase category!');

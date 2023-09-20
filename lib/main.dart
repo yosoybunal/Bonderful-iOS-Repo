@@ -9,8 +9,8 @@ import 'firebase_options.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
-final _configuration =
-    PurchasesConfiguration('appl_toUfVdcFmkpqtVfByEXhChOLlmL');
+// final _configuration =
+//     PurchasesConfiguration('appl_toUfVdcFmkpqtVfByEXhChOLlmL');
 
 var kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 255, 225, 90),
@@ -18,7 +18,7 @@ var kColorScheme = ColorScheme.fromSeed(
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Purchases.configure(_configuration);
+  // await Purchases.configure(_configuration);
   await PurchaseApi.init();
 
   await Firebase.initializeApp(
