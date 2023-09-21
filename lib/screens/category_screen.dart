@@ -42,8 +42,6 @@ class _CategoryScreenState extends State<CategoryScreen>
 
     _animationController.forward();
 
-    Purchases.getCustomerInfo();
-    PurchaseApi.init();
     Purchases.addCustomerInfoUpdateListener(
         (customerInfo) => updateCustomerStatus());
     updateCustomerStatus();
