@@ -7,10 +7,6 @@ import 'package:herkese_sor/screens/splash_screen.dart';
 import 'package:herkese_sor/screens/tabs_screen.dart';
 import 'firebase_options.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
-
-// final _configuration =
-//     PurchasesConfiguration('appl_toUfVdcFmkpqtVfByEXhChOLlmL');
 
 var kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 255, 225, 90),
@@ -18,7 +14,6 @@ var kColorScheme = ColorScheme.fromSeed(
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Purchases.configure(_configuration);
   await PurchaseApi.init();
 
   await Firebase.initializeApp(
@@ -33,19 +28,6 @@ class MyApp extends StatelessWidget {
   static final ValueNotifier<ThemeMode> themeNotifier =
       ValueNotifier(ThemeMode.dark);
   const MyApp({super.key});
-
-//   @override
-//   State<MyApp> createState() => _MyAppState();
-// }
-
-// class _MyAppState extends State<MyApp> {
-//   static final ValueNotifier<ThemeMode> themeNotifier =
-//       ValueNotifier(ThemeMode.dark);
-
-//   @override
-//   void initState() {
-//     super.initState();
-//   }
 
   @override
   Widget build(BuildContext context) {

@@ -2,8 +2,9 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:herkese_sor/dummy_data/data.dart';
-import 'package:herkese_sor/models/purchase_api.dart';
+import 'package:herkese_sor/main.dart';
 import 'package:herkese_sor/screens/auth_screen.dart';
 import 'package:herkese_sor/screens/questions_screen.dart';
 import 'package:herkese_sor/widgets/category_grid_item.dart';
@@ -74,7 +75,6 @@ class _CategoryScreenState extends State<CategoryScreen>
   }
 
   void _selectCategory(BuildContext context, Category category) async {
-    // final customerInfo = await Purchases.getCustomerInfo();
     Offerings offerings = await Purchases.getOfferings();
 
     Package? packageForMost =
@@ -116,52 +116,40 @@ class _CategoryScreenState extends State<CategoryScreen>
       showCupertinoModalPopup<int>(
         context: context,
         builder: (BuildContext context) => CupertinoActionSheet(
-          title: const Text('Title'),
-          message: const Text('Message'),
+          title: Text(
+            'Bonderful Idea!',
+            style: GoogleFonts.alef(fontSize: 18)
+                .copyWith(color: kColorScheme.inversePrimary),
+          ),
+          message: Text(
+            'You will proceed to unlock this category through App Store.',
+            style: GoogleFonts.alef(fontSize: 15),
+          ),
           actions: <CupertinoActionSheetAction>[
             CupertinoActionSheetAction(
-              child: Text(
-                isSubForMost ? 'kilitsiz' : 'Continue',
-                style: const TextStyle(color: CupertinoColors.link),
+              child: const Text(
+                'Continue',
+                style: TextStyle(color: CupertinoColors.link),
               ),
               onPressed: () async {
                 try {
                   if (category.id == 'c3' && isSubForMost == false) {
                     await Purchases.purchasePackage(packageForMost!);
-                    // await Purchases.purchaseStoreProduct(
-                    //   const StoreProduct(
-                    //     'bonderful_1.99_mostlikely',
-                    //     'Purchase will unlock this category',
-                    //     'Who is most likely',
-                    //     1.99,
-                    //     'onenintynine',
-                    //     'USD',
-                    //   ),
-                    // );
-                    updateCustomerStatus();
+
+                    // updateCustomerStatus();
                   }
                 } catch (e) {
                   debugPrint('Failed to purchase category!');
                 }
                 try {
                   if (category.id == 'c4' && isSubForTruth == false) {
-                    // await Purchases.purchasePackage(packageForTruth!);
-                    await Purchases.purchaseStoreProduct(
-                      const StoreProduct(
-                        'bonderful_1.99_truth',
-                        'Purchase will unlock this category',
-                        'Truth or Dare',
-                        1.99,
-                        'onenintynine',
-                        'USD',
-                      ),
-                    );
+                    await Purchases.purchasePackage(packageForTruth!);
                   }
                 } catch (e) {
                   debugPrint('Failed to purchase category!');
                 }
                 try {
-                  if (category.id == 'c11' && isSubForRather == false) {
+                  if (category.id == 'c11') {
                     await Purchases.purchasePackage(packageForRather!);
                   }
                 } catch (e) {
@@ -170,7 +158,7 @@ class _CategoryScreenState extends State<CategoryScreen>
               },
             ),
             CupertinoActionSheetAction(
-              child: const Text('Cancel',
+              child: const Text('Go back',
                   style: TextStyle(color: CupertinoColors.destructiveRed)),
               onPressed: () {
                 Navigator.pop(context);

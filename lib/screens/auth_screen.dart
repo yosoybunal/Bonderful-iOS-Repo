@@ -75,7 +75,7 @@ class _AuthScreenState extends State<AuthScreen> {
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromARGB(255, 34, 34, 31),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(0, 120, 0, 0),
+        padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
         children: [
           Column(
             children: [
@@ -141,7 +141,8 @@ class _AuthScreenState extends State<AuthScreen> {
                                         validator: (value) {
                                           if (value == null ||
                                               value.trim().isEmpty ||
-                                              !value.contains('@')) {
+                                              !value.contains('@') ||
+                                              !value.contains('.com')) {
                                             return 'Please enter a valid email address!';
                                           }
                                           return null;
@@ -166,8 +167,8 @@ class _AuthScreenState extends State<AuthScreen> {
                                               value.trim().length < 6) {
                                             return 'Password should at least be 6 characters!';
                                           }
-                                          if (value.trim().length > 8) {
-                                            return 'Password should at most be 8 characters!';
+                                          if (value.trim().length > 10) {
+                                            return 'Password should at most be 10 characters!';
                                           }
                                           return null;
                                         },

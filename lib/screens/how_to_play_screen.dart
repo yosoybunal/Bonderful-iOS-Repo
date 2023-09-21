@@ -43,11 +43,12 @@ class _HowToPlayScreenState extends State<HowToPlayScreen> {
                 ),
               );
             },
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
             child: Text(
               'Back to Categories',
               style: TextStyle(
                 color: kColorScheme.onPrimary,
-                fontSize: 20,
+                fontSize: 18,
               ),
             ),
           ),
@@ -322,7 +323,7 @@ class _HowToPlayScreenState extends State<HowToPlayScreen> {
                                   'Back to Categories',
                                   style: TextStyle(
                                     color: kColorScheme.background,
-                                    fontSize: 20,
+                                    fontSize: 18,
                                   ),
                                 ),
                               ),
@@ -347,7 +348,6 @@ class _HowToPlayScreenState extends State<HowToPlayScreen> {
                                   vertical: 15,
                                   horizontal: 25,
                                 ),
-                                // child: Flexible(
                                 child: SingleChildScrollView(
                                   child: Text(
                                     'Select a category to see a question for everyone to answer, starting from the person next to you. You can also select Shuffle from the side menu to view questions from any category. You can add questions to Your Favourites list by clicking on the star icon. Have Bonderful time!',

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:herkese_sor/main.dart';
 import 'package:herkese_sor/models/category.dart';
@@ -19,6 +20,13 @@ class CategoryGridItem extends StatelessWidget {
         ? Colors.white
         : Theme.of(context).colorScheme.onBackground;
 
+    Widget lockIcon = Icon(
+      category.id == 'c3' || category.id == 'c4' || category.id == 'c11'
+          ? CupertinoIcons.lock_fill
+          : null,
+      size: 15.0,
+    );
+
     return InkWell(
       onTap: onSelectCategory,
       splashColor: Theme.of(context).primaryColor,
@@ -37,9 +45,16 @@ class CategoryGridItem extends StatelessWidget {
           ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            lockIcon,
+            const SizedBox(
+              height: 14,
+            ),
             category.iconSmall,
+            const SizedBox(
+              height: 18,
+            ),
             Text(
               category.title,
               style: GoogleFonts.alef(fontSize: 15).copyWith(color: itemsColor),
