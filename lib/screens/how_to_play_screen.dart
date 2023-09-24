@@ -31,7 +31,7 @@ class _HowToPlayScreenState extends State<HowToPlayScreen> {
   List<Widget> _getCardList() {
     List<MatchCard> cards = [
       MatchCard(
-        color: kColorScheme.inversePrimary,
+        color: CupertinoColors.systemYellow,
         widget: cardPortraitView(
           'That\'s all! You can now get to know each other more and strengthen your bond. Have Bonderful time!',
           '4/4',
@@ -55,9 +55,9 @@ class _HowToPlayScreenState extends State<HowToPlayScreen> {
         ),
       ),
       MatchCard(
-        color: kColorScheme.inversePrimary,
+        color: CupertinoColors.systemYellow,
         widget: cardPortraitView(
-          'You can add any question to Your Favorites by clicking on the star icon.',
+          'You can add any question to Your Favorites by clicking on the heart icon.',
           '3/4',
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -76,7 +76,7 @@ class _HowToPlayScreenState extends State<HowToPlayScreen> {
         ),
       ),
       MatchCard(
-        color: kColorScheme.inversePrimary,
+        color: CupertinoColors.systemYellow,
         widget: cardPortraitView(
           'You can also select Shuffle from the side menu to view questions from any category.',
           '2/4',
@@ -97,7 +97,7 @@ class _HowToPlayScreenState extends State<HowToPlayScreen> {
         ),
       ),
       MatchCard(
-        color: kColorScheme.inversePrimary,
+        color: CupertinoColors.systemYellow,
         widget: cardPortraitView(
           'Select a category to see a question for everyone to answer starting from the person next to you.',
           '1/4',
@@ -223,7 +223,7 @@ class _HowToPlayScreenState extends State<HowToPlayScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Icon(
-                FontAwesomeIcons.lightbulb,
+                CupertinoIcons.tree,
                 size: 250,
               ),
               Card(
@@ -284,7 +284,7 @@ class _HowToPlayScreenState extends State<HowToPlayScreen> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        kColorScheme.primary,
+                        kColorScheme.tertiary,
                         kColorScheme.inversePrimary,
                       ],
                     ),
@@ -303,7 +303,7 @@ class _HowToPlayScreenState extends State<HowToPlayScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               const Icon(
-                                FontAwesomeIcons.lightbulb,
+                                CupertinoIcons.tree,
                                 size: 150,
                               ),
                               OutlinedButton(
@@ -350,7 +350,7 @@ class _HowToPlayScreenState extends State<HowToPlayScreen> {
                                 ),
                                 child: SingleChildScrollView(
                                   child: Text(
-                                    'Select a category to see a question for everyone to answer, starting from the person next to you. You can also select Shuffle from the side menu to view questions from any category. You can add questions to Your Favourites list by clicking on the star icon. Have Bonderful time!',
+                                    'Select a category to see a question for everyone to answer, starting from the person next to you. You can also select Shuffle from the side menu to view questions from any category. You can add questions to Your Favourites list by clicking on the heart icon. Have Bonderful time!',
                                     style: TextStyle(
                                       color: kColorScheme.onBackground,
                                       fontSize: 18,

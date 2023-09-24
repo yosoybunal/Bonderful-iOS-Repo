@@ -170,6 +170,62 @@ class _CategoryScreenState extends State<CategoryScreen>
     }
   }
 
+  static Route<Object?> _dialogBuilder(
+      BuildContext context, Object? arguments) {
+    return CupertinoDialogRoute<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: const Text(
+            'You\'re about to sign out.',
+            style: TextStyle(
+              color: CupertinoDynamicColor.withBrightness(
+                  color: Colors.blueGrey, darkColor: Colors.blueGrey),
+            ),
+          ),
+          content: const Text('Do you wish to sign out?'),
+          actions: <Widget>[
+            CupertinoDialogAction(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                'Cancel',
+                style: TextStyle(color: CupertinoColors.activeBlue),
+              ),
+            ),
+            CupertinoDialogAction(
+              onPressed: () {
+                FutureBuilder(
+                  future: FirebaseAuth.instance.signOut(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(
+                        child: CupertinoActivityIndicator(
+                            radius: 15.0, color: CupertinoColors.activeBlue),
+                      );
+                    }
+                    if (snapshot.hasError) {
+                      return const Center(
+                        child: Text('Unexpected error! Please try again.'),
+                      );
+                    }
+                    return const AuthScreen();
+                  },
+                );
+                Navigator.pop(context);
+              },
+              child: const Text(
+                'Sign Out',
+                style: TextStyle(color: CupertinoColors.destructiveRed),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -184,24 +240,7 @@ class _CategoryScreenState extends State<CategoryScreen>
         actions: [
           IconButton(
             onPressed: () {
-              FutureBuilder(
-                future: FirebaseAuth.instance.signOut(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
-                      child: CupertinoActivityIndicator(
-                          radius: 15.0, color: CupertinoColors.activeBlue),
-                    );
-                  }
-                  if (snapshot.hasError) {
-                    return const Center(
-                      child: Text('Unexpected error! Please try again.'),
-                    );
-                  }
-
-                  return const AuthScreen();
-                },
-              );
+              Navigator.of(context).restorablePush(_dialogBuilder);
             },
             icon: Icon(
               CupertinoIcons.arrow_left_to_line,
@@ -219,7 +258,7 @@ class _CategoryScreenState extends State<CategoryScreen>
                 padding: const EdgeInsets.all(17),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
-                  childAspectRatio: 0.5,
+                  childAspectRatio: 0.48,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 15,
                 ),

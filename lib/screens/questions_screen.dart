@@ -255,7 +255,7 @@ class _QuestionsScreenState extends ConsumerState<QuestionsScreen> {
                                       padding: const EdgeInsets.all(20.0),
                                       child: Text(
                                         parser.emojify(
-                                            'Sorry! This is the last question in this category for the time being. If you have any question ideas for this category please click on Send Suggestions and we can add that question with referrence to your username :crown:'),
+                                            'Sorry! This is the last question in this category for the time being. If you have any question ideas for this category please click on Send Suggestions and we can add that question with referrence to you :crown:'),
                                       ),
                                     ),
                                   ),
@@ -408,7 +408,7 @@ class _QuestionsScreenState extends ConsumerState<QuestionsScreen> {
                                     padding: const EdgeInsets.all(20.0),
                                     child: Text(
                                       parser.emojify(
-                                          'Sorry! This is the last question in this category for the time being. If you have any question ideas for this category please click on Send Suggestions and we can add that question with referrence to your username :crown:'),
+                                          'Sorry! This is the last question in this category for the time being. If you have any question ideas for this category please click on Send Suggestions and we can add that question with referrence to you :crown:'),
                                     ),
                                   ),
                                 ),

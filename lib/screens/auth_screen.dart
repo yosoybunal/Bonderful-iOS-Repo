@@ -1,8 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final _firebase = FirebaseAuth.instance;
 
@@ -18,10 +21,16 @@ class _AuthScreenState extends State<AuthScreen> {
   var _isLogin = true;
   var _enteredEmail = '';
   var _enteredPassword = '';
-  // var _enteredUsername = '';
   var _isAuthenticating = false;
   List listOfQuestions = [];
   List listOfIntensities = [];
+
+  String? encodeQueryParameters(Map<String, String> params) {
+    return params.entries
+        .map((MapEntry<String, String> e) =>
+            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+        .join('&');
+  }
 
   void _submit() async {
     final isValid = _formKey.currentState!.validate();
@@ -47,7 +56,6 @@ class _AuthScreenState extends State<AuthScreen> {
             .doc(userCredentials.user!.uid)
             .set({
           'email': _enteredEmail,
-          // 'username': _enteredUsername,
           'password': _enteredPassword,
           'listQuestions': listOfQuestions,
           'listIntensities': listOfIntensities,
@@ -71,6 +79,15 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     final heigth = MediaQuery.of(context).size.height * 0.80;
+    final Uri urlPrivacy = Uri.parse(
+        'https://docs.google.com/document/d/1FMDfZqAF93gZCWMs6F6jZQX9NN1K7qp94lNWnc8piHU/edit');
+
+    Future<void> launchUrlPrivacy() async {
+      if (!await launchUrl(urlPrivacy)) {
+        throw Exception('Could not launch $urlPrivacy');
+      }
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromARGB(255, 34, 34, 31),
@@ -217,6 +234,25 @@ class _AuthScreenState extends State<AuthScreen> {
                                                             .onBackground),
                                           ),
                                         ),
+                                      if (!_isAuthenticating)
+                                        TextButton(
+                                          onPressed: () {
+                                            launchUrlPrivacy();
+                                          },
+                                          child: RichText(
+                                            text: TextSpan(
+                                              text: 'Privacy Policy',
+                                              style: GoogleFonts.alef(
+                                                fontSize: 14,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .onBackground,
+                                                decoration: TextDecoration
+                                                    .underline, // Add this line to underline the text
+                                              ),
+                                            ),
+                                          ),
+                                        )
                                     ],
                                   ),
                                 ),

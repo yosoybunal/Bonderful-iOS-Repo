@@ -103,39 +103,35 @@ class _UserFavoritesScreenState extends ConsumerState<UserFavoritesScreen> {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog.adaptive(
-                          title: Text(
+                          title: const Text(
                             'The question will be deleted!',
                             style: TextStyle(
-                              color: questionColor,
-                              fontSize: 20,
+                              color: CupertinoDynamicColor.withBrightness(
+                                  color: Colors.blueGrey,
+                                  darkColor: Colors.blueGrey),
                             ),
                           ),
-                          content: Text(
+                          content: const Text(
                             'Are you sure you wish to delete this one?',
-                            style: TextStyle(
-                              color: itemsColor,
-                              fontSize: 16,
-                            ),
                           ),
                           actions: [
                             TextButton(
                               onPressed: () => Navigator.of(context).pop(false),
                               child: const Text(
-                                'CANCEL',
+                                'Cancel',
                                 style: TextStyle(
-                                  color: Colors.blue,
-                                  fontSize: 16,
+                                  color: CupertinoColors.activeBlue,
+                                  fontSize: 17,
                                 ),
                               ),
                             ),
                             TextButton(
                               onPressed: () => Navigator.of(context).pop(true),
                               child: const Text(
-                                'DELETE',
+                                'Delete',
                                 style: TextStyle(
-                                  color: Color.fromARGB(186, 244, 67, 54),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
+                                  color: CupertinoColors.destructiveRed,
+                                  fontSize: 17,
                                 ),
                               ),
                             ),
@@ -174,13 +170,13 @@ class _UserFavoritesScreenState extends ConsumerState<UserFavoritesScreen> {
                       questionsRef[index],
                       style: TextStyle(
                         color: questionColor,
-                        fontSize: 18,
+                        fontSize: 17,
                       ),
                     ),
                     subtitle: Text(intensitiesRef[index],
                         style: TextStyle(
                           color: intensityColor,
-                          fontSize: 16,
+                          fontSize: 15,
                         )),
                     leading: Icon(
                       CupertinoIcons.question_circle,
