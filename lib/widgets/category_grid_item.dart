@@ -61,7 +61,7 @@ class CategoryGridItem extends StatelessWidget {
             ),
             Text(
               category.title,
-              style: GoogleFonts.alef(fontSize: 15).copyWith(color: itemsColor),
+              style: GoogleFonts.alef(fontSize: 14).copyWith(color: itemsColor),
               textAlign: TextAlign.center,
             ),
           ],
