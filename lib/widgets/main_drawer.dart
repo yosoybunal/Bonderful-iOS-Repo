@@ -75,7 +75,7 @@ class MainDrawer extends StatelessWidget {
               ),
               title: Text(
                 'Shuffle',
-                textScaleFactor: 1.2,
+                textScaleFactor: 1.0,
                 style: TextStyle(color: drawerItemsColor),
               ),
               onTap: () {
@@ -103,7 +103,7 @@ class MainDrawer extends StatelessWidget {
               ),
               title: Text(
                 'How to Play',
-                textScaleFactor: 1.2,
+                textScaleFactor: 1.0,
                 style: TextStyle(color: drawerItemsColor),
               ),
               onTap: () {
@@ -122,7 +122,7 @@ class MainDrawer extends StatelessWidget {
               ),
               title: Text(
                 'Share Suggestions',
-                textScaleFactor: 1.2,
+                textScaleFactor: 1,
                 style: TextStyle(color: drawerItemsColor),
               ),
               onTap: () async {
@@ -151,7 +151,7 @@ class MainDrawer extends StatelessWidget {
               ),
               title: Text(
                 'Instagram',
-                textScaleFactor: 1.2,
+                textScaleFactor: 1.0,
                 style: TextStyle(color: drawerItemsColor),
               ),
               onTap: launchUrlInstagram,
@@ -164,7 +164,7 @@ class MainDrawer extends StatelessWidget {
               ),
               title: Text(
                 'Twitter',
-                textScaleFactor: 1.2,
+                textScaleFactor: 1.0,
                 style: TextStyle(color: drawerItemsColor),
               ),
               onTap: launchUrlTwitter,
@@ -177,7 +177,7 @@ class MainDrawer extends StatelessWidget {
               ),
               title: Text(
                 'Switch Theme',
-                textScaleFactor: 1.2,
+                textScaleFactor: 1.0,
                 style: TextStyle(color: drawerItemsColor),
               ),
               onTap: () {
@@ -196,7 +196,7 @@ class MainDrawer extends StatelessWidget {
               ),
               title: Text(
                 'Account Settings',
-                textScaleFactor: 1.2,
+                textScaleFactor: 1.0,
                 style: TextStyle(color: drawerItemsColor),
               ),
               onTap: () {

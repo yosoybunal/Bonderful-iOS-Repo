@@ -305,6 +305,7 @@ class _HowToPlayScreenState extends State<HowToPlayScreen> {
                                 CupertinoIcons.tree,
                                 size: 150,
                               ),
+                              const SizedBox(height: 10),
                               OutlinedButton(
                                 style: OutlinedButton.styleFrom(
                                   side: BorderSide(

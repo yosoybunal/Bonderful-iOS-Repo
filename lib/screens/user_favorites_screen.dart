@@ -57,7 +57,7 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
                 children: [
                   Text(
                     'Uh... nothing here!',
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(),
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(),
                   ),
                   const SizedBox(
                     height: 16,
@@ -68,7 +68,7 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
                     ),
                     child: Text(
                       'Start creating your list of favorites.',
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(),
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(),
                       textAlign: TextAlign.center,
                     ),
                   )
@@ -81,7 +81,7 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
             return Center(
               child: Text(
                 'There seems to be someting wrong! Please try again.',
-                style: Theme.of(context).textTheme.titleLarge!.copyWith(),
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(),
               ),
             );
           }
@@ -150,7 +150,13 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
                         backgroundColor:
                             Theme.of(context).colorScheme.secondary,
                         duration: const Duration(seconds: 2),
-                        content: const Text('Question has been removed!'),
+                        content: Text(
+                          'Question has been removed!',
+                          style:
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    fontSize: 15,
+                                  ),
+                        ),
                       ),
                     );
 

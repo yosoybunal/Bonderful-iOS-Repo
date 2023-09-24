@@ -11,7 +11,7 @@ import 'package:herkese_sor/widgets/category_grid_item.dart';
 import 'package:herkese_sor/models/category.dart';
 import 'package:herkese_sor/widgets/main_drawer.dart';
 import 'package:flutter/cupertino.dart';
-// import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({
@@ -43,30 +43,30 @@ class _CategoryScreenState extends State<CategoryScreen>
 
     _animationController.forward();
 
-    // Purchases.addCustomerInfoUpdateListener(
-    //     (customerInfo) => updateCustomerStatus());
-    // updateCustomerStatus();
+    Purchases.addCustomerInfoUpdateListener(
+        (customerInfo) => updateCustomerStatus());
+    updateCustomerStatus();
   }
 
-  // Future updateCustomerStatus() async {
-  //   final customerInfo = await Purchases.getCustomerInfo();
+  Future updateCustomerStatus() async {
+    final customerInfo = await Purchases.getCustomerInfo();
 
-  //   setState(() {
-  //     final entitlement = customerInfo.entitlements.active['Truth or Dare'];
-  //     isSubForTruth = entitlement != null;
-  //   });
+    setState(() {
+      final entitlement = customerInfo.entitlements.active['Truth or Dare'];
+      isSubForTruth = entitlement != null;
+    });
 
-  //   setState(() {
-  //     final entitlement =
-  //         customerInfo.entitlements.active['Who is most likely'];
-  //     isSubForMost = entitlement != null;
-  //   });
+    setState(() {
+      final entitlement =
+          customerInfo.entitlements.active['Who is most likely'];
+      isSubForMost = entitlement != null;
+    });
 
-  //   setState(() {
-  //     final entitlement = customerInfo.entitlements.active['Would you rather?'];
-  //     isSubForRather = entitlement != null;
-  //   });
-  // }
+    setState(() {
+      final entitlement = customerInfo.entitlements.active['Would you rather?'];
+      isSubForRather = entitlement != null;
+    });
+  }
 
   @override
   void dispose() {

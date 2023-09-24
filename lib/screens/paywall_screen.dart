@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,6 +7,7 @@ import 'package:herkese_sor/main.dart';
 import 'package:herkese_sor/models/category.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PaywallScreen extends StatefulWidget {
   const PaywallScreen({
@@ -23,6 +26,13 @@ class _PaywallScreenState extends State<PaywallScreen> {
   bool isSubForMost = false;
   bool isSubForRather = false;
   var isTransaction = false;
+
+  String? encodeQueryParameters(Map<String, String> params) {
+    return params.entries
+        .map((MapEntry<String, String> e) =>
+            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+        .join('&');
+  }
 
   @override
   void initState() {
@@ -93,23 +103,48 @@ class _PaywallScreenState extends State<PaywallScreen> {
       });
     }
     try {
+      setState(() {
+        isTransaction = true;
+      });
       if (widget.category.id == 'c4' && isSubForTruth == false) {
         await Purchases.purchasePackage(packageForTruth!);
       }
     } catch (e) {
       debugPrint('Failed to purchase category!');
+      setState(() {
+        isTransaction = false;
+      });
     }
     try {
+      setState(() {
+        isTransaction = true;
+      });
       if (widget.category.id == 'c11') {
         await Purchases.purchasePackage(packageForRather!);
       }
     } catch (e) {
       debugPrint('Failed to purchase category!');
+      setState(() {
+        isTransaction = false;
+      });
     }
+    setState(() {
+      isTransaction = false;
+    });
+    Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
+    final Uri urlPrivacy = Uri.parse(
+        'https://docs.google.com/document/d/1FMDfZqAF93gZCWMs6F6jZQX9NN1K7qp94lNWnc8piHU/edit');
+
+    Future<void> launchUrlPrivacy() async {
+      if (!await launchUrl(urlPrivacy)) {
+        throw Exception('Could not launch $urlPrivacy');
+      }
+    }
+
     final Color appBarColor = MyApp.themeNotifier.value == ThemeMode.dark
         ? CupertinoColors.secondaryLabel
         : CupertinoColors.inactiveGray;
@@ -187,16 +222,22 @@ class _PaywallScreenState extends State<PaywallScreen> {
                   ),
                 ),
               const SizedBox(height: 40.0),
-              RichText(
-                text: TextSpan(
-                  text: 'Privacy Policy',
-                  style: GoogleFonts.alef(
-                    fontSize: 14,
-                    color: bodyColor,
-                    decoration: TextDecoration.underline,
+              if (!isTransaction)
+                TextButton(
+                  onPressed: () {
+                    launchUrlPrivacy();
+                  },
+                  child: RichText(
+                    text: TextSpan(
+                      text: 'Privacy Policy',
+                      style: GoogleFonts.alef(
+                        fontSize: 14,
+                        color: bodyColor,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
                   ),
-                ),
-              ),
+                )
             ],
           ),
         ),
