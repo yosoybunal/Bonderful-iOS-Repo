@@ -22,6 +22,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
   bool isSubForTruth = false;
   bool isSubForMost = false;
   bool isSubForRather = false;
+  var isTransaction = false;
 
   @override
   void initState() {
@@ -79,11 +80,17 @@ class _PaywallScreenState extends State<PaywallScreen> {
         offerings.getOffering("Would you rather?")!.lifetime;
 
     try {
+      setState(() {
+        isTransaction = true;
+      });
       if (widget.category.id == 'c3' && isSubForMost == false) {
         await Purchases.purchasePackage(packageForMost!);
       }
     } catch (e) {
       debugPrint('Failed to purchase category!');
+      setState(() {
+        isTransaction = false;
+      });
     }
     try {
       if (widget.category.id == 'c4' && isSubForTruth == false) {
@@ -155,7 +162,6 @@ class _PaywallScreenState extends State<PaywallScreen> {
                     .titleLarge!
                     .copyWith(color: intensityColor),
               ),
-              // const SizedBox(height: 16.0),
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
@@ -168,14 +174,18 @@ class _PaywallScreenState extends State<PaywallScreen> {
                 ),
               ),
               const SizedBox(height: 12.0),
-              CupertinoButton.filled(
-                onPressed: onSelectLockedCategory,
-                child: Text(
-                  'Continue',
-                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      color: CupertinoColors.extraLightBackgroundGray),
+              if (isTransaction)
+                const CupertinoActivityIndicator(
+                    radius: 15.0, color: CupertinoColors.activeBlue),
+              if (!isTransaction)
+                CupertinoButton.filled(
+                  onPressed: onSelectLockedCategory,
+                  child: Text(
+                    'Continue',
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        color: CupertinoColors.extraLightBackgroundGray),
+                  ),
                 ),
-              ),
               const SizedBox(height: 40.0),
               RichText(
                 text: TextSpan(
