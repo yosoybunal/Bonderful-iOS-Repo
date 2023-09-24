@@ -92,12 +92,12 @@ class _AuthScreenState extends State<AuthScreen> {
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromARGB(255, 34, 34, 31),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+        padding: const EdgeInsets.fromLTRB(0, 80, 0, 0),
         children: [
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
+                padding: const EdgeInsets.only(bottom: 35.0),
                 child: Image.asset(
                   'assets/images/bonderful1.png',
                   alignment: Alignment.center,
@@ -130,9 +130,9 @@ class _AuthScreenState extends State<AuthScreen> {
                         child: Column(
                           children: [
                             Card(
-                              margin: const EdgeInsets.fromLTRB(20, 50, 20, 25),
+                              margin: const EdgeInsets.fromLTRB(20, 40, 20, 25),
                               child: Padding(
-                                padding: const EdgeInsets.all(16),
+                                padding: const EdgeInsets.all(15),
                                 child: Form(
                                   key: _formKey,
                                   child: Column(
@@ -258,10 +258,13 @@ class _AuthScreenState extends State<AuthScreen> {
                                 ),
                               ),
                             ),
-                            Image.asset(
-                              'assets/images/auth_screen_icon.png',
-                              alignment: Alignment.center,
-                              scale: 3.0,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Image.asset(
+                                'assets/images/auth_screen_icon.png',
+                                alignment: Alignment.center,
+                                scale: 3.0,
+                              ),
                             ),
                           ],
                         ),

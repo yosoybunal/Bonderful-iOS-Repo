@@ -221,7 +221,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
                         color: CupertinoColors.extraLightBackgroundGray),
                   ),
                 ),
-              const SizedBox(height: 40.0),
+              const SizedBox(height: 27.0),
               if (!isTransaction)
                 TextButton(
                   onPressed: () {

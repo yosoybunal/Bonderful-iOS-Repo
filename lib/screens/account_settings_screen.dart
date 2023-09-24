@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:herkese_sor/main.dart';
+import 'package:herkese_sor/screens/auth_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AccountSettingsScreen extends StatelessWidget {
@@ -12,6 +13,78 @@ class AccountSettingsScreen extends StatelessWidget {
         .map((MapEntry<String, String> e) =>
             '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
         .join('&');
+  }
+
+  static Route<Object?> _dialogBuilder(
+      BuildContext context, Object? arguments) {
+    return CupertinoDialogRoute<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: const Text(
+            'You\'re about to log out.',
+            style: TextStyle(
+              color: CupertinoDynamicColor.withBrightness(
+                  color: Colors.blueGrey, darkColor: Colors.blueGrey),
+            ),
+          ),
+          content: const Text('Do you wish to log out?'),
+          actions: <Widget>[
+            CupertinoDialogAction(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                'Cancel',
+                style: TextStyle(color: CupertinoColors.activeBlue),
+              ),
+            ),
+            CupertinoDialogAction(
+              onPressed: () {
+                FutureBuilder(
+                  future: FirebaseAuth.instance.currentUser!.delete().then(
+                    (value) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const AuthScreen(),
+                        ),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.secondary,
+                          duration: const Duration(seconds: 2),
+                          content: const Text('The account has been deleted!'),
+                        ),
+                      );
+                    },
+                  ),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(
+                        child: CupertinoActivityIndicator(
+                            radius: 15.0, color: CupertinoColors.activeBlue),
+                      );
+                    }
+                    if (snapshot.hasError) {
+                      return const Center(
+                        child: Text('Unexpected error! Please try again.'),
+                      );
+                    }
+                    return const AuthScreen();
+                  },
+                );
+                // Navigator.pop(context);
+              },
+              child: const Text(
+                'Delete Account',
+                style: TextStyle(color: CupertinoColors.destructiveRed),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -52,7 +125,7 @@ class AccountSettingsScreen extends StatelessWidget {
                   ),
                   label: Text(
                     email!,
-                    textScaleFactor: 1.2,
+                    textScaleFactor: 1.1,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           color: itemsColor,
                         ),
@@ -70,7 +143,7 @@ class AccountSettingsScreen extends StatelessWidget {
                   ),
                   label: Text(
                     'Send Reset Password to Email',
-                    textScaleFactor: 1.2,
+                    textScaleFactor: 1.1,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           color: itemsColor,
                         ),
@@ -100,7 +173,7 @@ class AccountSettingsScreen extends StatelessWidget {
                   ),
                   label: Text(
                     'Share Suggestions',
-                    textScaleFactor: 1.2,
+                    textScaleFactor: 1.1,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           color: itemsColor,
                         ),
@@ -128,32 +201,18 @@ class AccountSettingsScreen extends StatelessWidget {
                   height: 25,
                 ),
                 TextButton.icon(
-                  icon: Icon(
-                    CupertinoIcons.delete,
-                    color: kColorScheme.inversePrimary,
-                  ),
-                  label: Text(
-                    'Delete Your Account',
-                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        color: const Color.fromARGB(167, 244, 67, 54)),
-                  ),
-                  onPressed: () async {
-                    await FirebaseAuth.instance.currentUser!.delete().then(
-                      (value) {
-                        Navigator.of(context).pop();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            backgroundColor:
-                                Theme.of(context).colorScheme.secondary,
-                            duration: const Duration(seconds: 2),
-                            content:
-                                const Text('The account has been deleted!'),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
+                    icon: Icon(
+                      CupertinoIcons.delete,
+                      color: kColorScheme.inversePrimary,
+                    ),
+                    label: Text(
+                      'Delete Your Account',
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                          color: const Color.fromARGB(167, 244, 67, 54)),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).restorablePush(_dialogBuilder);
+                    }),
               ],
             ),
           ),

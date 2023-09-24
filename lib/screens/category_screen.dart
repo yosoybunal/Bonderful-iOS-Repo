@@ -74,6 +74,26 @@ class _CategoryScreenState extends State<CategoryScreen>
     super.dispose();
   }
 
+  // Widget lockIcons = Icon(isSubForMost == false || isSubForRather == false || isSubForTruth == false
+  //         ? CupertinoIcons.lock_fill
+  //         : CupertinoIcons.lock_open_fill);
+
+  Widget lockIcon() {
+    if (isSubForMost == false ||
+        isSubForRather == false ||
+        isSubForTruth == false) {
+      return const Icon(CupertinoIcons.lock_fill, size: 20);
+    } else {
+      return const Icon(CupertinoIcons.lock_open_fill, size: 20);
+    }
+    // Widget lockIcon = Icon(
+    //   category.id == 'c3' || category.id == 'c4' || category.id == 'c11'
+    //       ? CupertinoIcons.lock_fill
+    //       : null,
+    //   size: 15.0,
+    // );
+  }
+
   void _selectCategory(BuildContext context, Category category) async {
     // Offerings offerings = await Purchases.getOfferings();
 
@@ -184,13 +204,13 @@ class _CategoryScreenState extends State<CategoryScreen>
       builder: (BuildContext context) {
         return CupertinoAlertDialog(
           title: const Text(
-            'You\'re about to sign out.',
+            'You\'re about to log out.',
             style: TextStyle(
               color: CupertinoDynamicColor.withBrightness(
                   color: Colors.blueGrey, darkColor: Colors.blueGrey),
             ),
           ),
-          content: const Text('Do you wish to sign out?'),
+          content: const Text('Do you wish to log out?'),
           actions: <Widget>[
             CupertinoDialogAction(
               onPressed: () {
@@ -277,6 +297,7 @@ class _CategoryScreenState extends State<CategoryScreen>
                 children: [
                   for (final category in availableCategories)
                     CategoryGridItem(
+                        lockIcon: lockIcon(),
                         category: category,
                         onSelectCategory: () {
                           _selectCategory(context, category);
@@ -308,6 +329,7 @@ class _CategoryScreenState extends State<CategoryScreen>
                 children: [
                   for (final category in availableCategories)
                     CategoryGridItem(
+                        lockIcon: lockIcon(),
                         category: category,
                         onSelectCategory: () {
                           _selectCategory(context, category);

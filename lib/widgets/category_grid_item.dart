@@ -9,10 +9,12 @@ class CategoryGridItem extends StatelessWidget {
     super.key,
     required this.category,
     required this.onSelectCategory,
+    required this.lockIcon,
   });
 
   final Category category;
   final void Function() onSelectCategory;
+  final Widget lockIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +22,12 @@ class CategoryGridItem extends StatelessWidget {
         ? Colors.white
         : Theme.of(context).colorScheme.onBackground;
 
-    Widget lockIcon = Icon(
-      category.id == 'c3' || category.id == 'c4' || category.id == 'c11'
-          ? CupertinoIcons.lock_fill
-          : null,
-      size: 15.0,
-    );
+    // Icon(
+    //   category.id == 'c3' || category.id == 'c4' || category.id == 'c11'
+    //       ? lockIcon
+    //       : null,
+    //   size: 15.0,
+    // );
 
     return InkWell(
       onTap: onSelectCategory,
@@ -47,9 +49,11 @@ class CategoryGridItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            lockIcon,
+            category.id == 'c3' || category.id == 'c4' || category.id == 'c11'
+                ? lockIcon
+                : const SizedBox(height: 20),
             const SizedBox(
-              height: 14,
+              height: 12,
             ),
             category.iconSmall,
             const SizedBox(
@@ -57,7 +61,7 @@ class CategoryGridItem extends StatelessWidget {
             ),
             Text(
               category.title,
-              style: GoogleFonts.alef(fontSize: 14).copyWith(color: itemsColor),
+              style: GoogleFonts.alef(fontSize: 15).copyWith(color: itemsColor),
               textAlign: TextAlign.center,
             ),
           ],
