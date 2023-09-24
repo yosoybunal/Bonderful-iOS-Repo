@@ -2,22 +2,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:herkese_sor/main.dart';
 
 final user = FirebaseAuth.instance.currentUser!;
 
-class UserFavoritesScreen extends ConsumerStatefulWidget {
+class UserFavoritesScreen extends StatefulWidget {
   const UserFavoritesScreen({
     super.key,
   });
 
   @override
-  ConsumerState<UserFavoritesScreen> createState() =>
-      _UserFavoritesScreenState();
+  State<UserFavoritesScreen> createState() => _UserFavoritesScreenState();
 }
 
-class _UserFavoritesScreenState extends ConsumerState<UserFavoritesScreen> {
+class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
   @override
   Widget build(BuildContext context) {
     final Color appBarColor = MyApp.themeNotifier.value == ThemeMode.dark

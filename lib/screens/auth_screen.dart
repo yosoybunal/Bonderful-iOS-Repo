@@ -247,8 +247,8 @@ class _AuthScreenState extends State<AuthScreen> {
                                                 color: Theme.of(context)
                                                     .colorScheme
                                                     .onBackground,
-                                                decoration: TextDecoration
-                                                    .underline, // Add this line to underline the text
+                                                decoration:
+                                                    TextDecoration.underline,
                                               ),
                                             ),
                                           ),

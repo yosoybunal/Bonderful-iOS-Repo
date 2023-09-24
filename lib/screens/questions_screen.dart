@@ -10,12 +10,11 @@ import 'package:flutter_emoji/flutter_emoji.dart';
 import 'package:herkese_sor/screens/tabs_screen.dart';
 import 'package:herkese_sor/widgets/question_animations.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 
 var parser = EmojiParser();
 
-class QuestionsScreen extends ConsumerStatefulWidget {
+class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({
     super.key,
     required this.questions,
@@ -28,10 +27,10 @@ class QuestionsScreen extends ConsumerStatefulWidget {
   final List<Question> questions;
 
   @override
-  ConsumerState<QuestionsScreen> createState() => _QuestionsScreenState();
+  State<QuestionsScreen> createState() => _QuestionsScreenState();
 }
 
-class _QuestionsScreenState extends ConsumerState<QuestionsScreen> {
+class _QuestionsScreenState extends State<QuestionsScreen> {
   int currentQuestionIndex = 0;
   void _nextQuestion() {
     setState(() {
@@ -110,7 +109,8 @@ class _QuestionsScreenState extends ConsumerState<QuestionsScreen> {
         List listRef = snapshot.data?.data()?['listQuestions'] ?? [];
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
-            child: CircularProgressIndicator(),
+            child: CupertinoActivityIndicator(
+                radius: 15.0, color: CupertinoColors.activeBlue),
           );
         }
 
@@ -238,7 +238,7 @@ class _QuestionsScreenState extends ConsumerState<QuestionsScreen> {
                           ],
                         ),
                         const SizedBox(
-                          height: 15,
+                          height: 25,
                         ),
                         categoryQuestions.length - 1 != currentQuestionIndex
                             ? IconButton.filled(
@@ -391,7 +391,7 @@ class _QuestionsScreenState extends ConsumerState<QuestionsScreen> {
                         ],
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 25,
                       ),
                       categoryQuestions.length - 1 != currentQuestionIndex
                           ? IconButton.filled(
@@ -452,13 +452,13 @@ class _QuestionsScreenState extends ConsumerState<QuestionsScreen> {
                                             CupertinoIcons.text_bubble),
                                         label: const Padding(
                                           padding: EdgeInsets.symmetric(
-                                            vertical: 20,
+                                            vertical: 30,
                                           ),
                                           child: Text('Share Suggestions'),
                                         ),
                                       ),
                                       const SizedBox(
-                                        height: 20,
+                                        height: 10,
                                       ),
                                       ElevatedButton(
                                         onPressed: () {

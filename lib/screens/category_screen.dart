@@ -2,7 +2,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:herkese_sor/dummy_data/data.dart';
 import 'package:herkese_sor/main.dart';
 import 'package:herkese_sor/screens/auth_screen.dart';
@@ -12,7 +11,7 @@ import 'package:herkese_sor/widgets/category_grid_item.dart';
 import 'package:herkese_sor/models/category.dart';
 import 'package:herkese_sor/widgets/main_drawer.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
+// import 'package:purchases_flutter/purchases_flutter.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({
@@ -44,30 +43,30 @@ class _CategoryScreenState extends State<CategoryScreen>
 
     _animationController.forward();
 
-    Purchases.addCustomerInfoUpdateListener(
-        (customerInfo) => updateCustomerStatus());
-    updateCustomerStatus();
+    // Purchases.addCustomerInfoUpdateListener(
+    //     (customerInfo) => updateCustomerStatus());
+    // updateCustomerStatus();
   }
 
-  Future updateCustomerStatus() async {
-    final customerInfo = await Purchases.getCustomerInfo();
+  // Future updateCustomerStatus() async {
+  //   final customerInfo = await Purchases.getCustomerInfo();
 
-    setState(() {
-      final entitlement = customerInfo.entitlements.active['Truth or Dare'];
-      isSubForTruth = entitlement != null;
-    });
+  //   setState(() {
+  //     final entitlement = customerInfo.entitlements.active['Truth or Dare'];
+  //     isSubForTruth = entitlement != null;
+  //   });
 
-    setState(() {
-      final entitlement =
-          customerInfo.entitlements.active['Who is most likely'];
-      isSubForMost = entitlement != null;
-    });
+  //   setState(() {
+  //     final entitlement =
+  //         customerInfo.entitlements.active['Who is most likely'];
+  //     isSubForMost = entitlement != null;
+  //   });
 
-    setState(() {
-      final entitlement = customerInfo.entitlements.active['Would you rather?'];
-      isSubForRather = entitlement != null;
-    });
-  }
+  //   setState(() {
+  //     final entitlement = customerInfo.entitlements.active['Would you rather?'];
+  //     isSubForRather = entitlement != null;
+  //   });
+  // }
 
   @override
   void dispose() {
@@ -76,15 +75,15 @@ class _CategoryScreenState extends State<CategoryScreen>
   }
 
   void _selectCategory(BuildContext context, Category category) async {
-    Offerings offerings = await Purchases.getOfferings();
+    // Offerings offerings = await Purchases.getOfferings();
 
-    Package? packageForMost =
-        offerings.getOffering("Who is most likely")!.lifetime;
+    // Package? packageForMost =
+    //     offerings.getOffering("Who is most likely")!.lifetime;
 
-    Package? packageForTruth = offerings.getOffering("Truth or Dare")!.lifetime;
+    // Package? packageForTruth = offerings.getOffering("Truth or Dare")!.lifetime;
 
-    Package? packageForRather =
-        offerings.getOffering("Would you rather?")!.lifetime;
+    // Package? packageForRather =
+    //     offerings.getOffering("Would you rather?")!.lifetime;
 
     if (category.id == 'c1' ||
         category.id == 'c2' ||
@@ -114,9 +113,13 @@ class _CategoryScreenState extends State<CategoryScreen>
         ),
       );
     } else {
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => const PaywallScreen(),
-      ));
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => PaywallScreen(
+            category: category,
+          ),
+        ),
+      );
       // showCupertinoModalPopup<int>(
       //   context: context,
       //   builder: (BuildContext context) => CupertinoActionSheet(
@@ -267,7 +270,7 @@ class _CategoryScreenState extends State<CategoryScreen>
                 padding: const EdgeInsets.all(17),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
-                  childAspectRatio: 0.48,
+                  childAspectRatio: 0.5,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 15,
                 ),
