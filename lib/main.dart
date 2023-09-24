@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:herkese_sor/models/purchase_api.dart';
 import 'package:herkese_sor/screens/auth_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,7 +21,9 @@ Future main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
-    const MyApp(),
+    const ProviderScope(
+      child: MyApp(),
+    ),
   );
 }
 

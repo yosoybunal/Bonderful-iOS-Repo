@@ -98,6 +98,7 @@ flutter:
     - assets/images/auth_screen_icon.png
     - assets/images/launcher_icon.png
     - assets/images/logo_png_version.png
+    - assets/images/paywall_image.png
 
 flutter_launcher_icons:
   android: "launcher_icon"

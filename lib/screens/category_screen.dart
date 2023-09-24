@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:herkese_sor/dummy_data/data.dart';
 import 'package:herkese_sor/main.dart';
 import 'package:herkese_sor/screens/auth_screen.dart';
+import 'package:herkese_sor/screens/paywall_screen.dart';
 import 'package:herkese_sor/screens/questions_screen.dart';
 import 'package:herkese_sor/widgets/category_grid_item.dart';
 import 'package:herkese_sor/models/category.dart';
@@ -113,60 +114,63 @@ class _CategoryScreenState extends State<CategoryScreen>
         ),
       );
     } else {
-      showCupertinoModalPopup<int>(
-        context: context,
-        builder: (BuildContext context) => CupertinoActionSheet(
-          title: Text(
-            'Bonderful Idea!',
-            style: GoogleFonts.alef(fontSize: 18)
-                .copyWith(color: kColorScheme.inversePrimary),
-          ),
-          message: Text(
-            'You will proceed to unlock this category through App Store.',
-            style: GoogleFonts.alef(fontSize: 15),
-          ),
-          actions: <CupertinoActionSheetAction>[
-            CupertinoActionSheetAction(
-              child: const Text(
-                'Continue',
-                style: TextStyle(color: CupertinoColors.link),
-              ),
-              onPressed: () async {
-                try {
-                  if (category.id == 'c3' && isSubForMost == false) {
-                    await Purchases.purchasePackage(packageForMost!);
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => const PaywallScreen(),
+      ));
+      // showCupertinoModalPopup<int>(
+      //   context: context,
+      //   builder: (BuildContext context) => CupertinoActionSheet(
+      //     title: Text(
+      //       'Bonderful Idea!',
+      //       style: GoogleFonts.alef(fontSize: 18)
+      //           .copyWith(color: kColorScheme.inversePrimary),
+      //     ),
+      //     message: Text(
+      //       'You will proceed to unlock this category through App Store.',
+      //       style: GoogleFonts.alef(fontSize: 15),
+      //     ),
+      //     actions: <CupertinoActionSheetAction>[
+      //       CupertinoActionSheetAction(
+      //         child: const Text(
+      //           'Continue',
+      //           style: TextStyle(color: CupertinoColors.link),
+      //         ),
+      //         onPressed: () async {
+      //           try {
+      //             if (category.id == 'c3' && isSubForMost == false) {
+      //               await Purchases.purchasePackage(packageForMost!);
 
-                    // updateCustomerStatus();
-                  }
-                } catch (e) {
-                  debugPrint('Failed to purchase category!');
-                }
-                try {
-                  if (category.id == 'c4' && isSubForTruth == false) {
-                    await Purchases.purchasePackage(packageForTruth!);
-                  }
-                } catch (e) {
-                  debugPrint('Failed to purchase category!');
-                }
-                try {
-                  if (category.id == 'c11') {
-                    await Purchases.purchasePackage(packageForRather!);
-                  }
-                } catch (e) {
-                  debugPrint('Failed to purchase category!');
-                }
-              },
-            ),
-            CupertinoActionSheetAction(
-              child: const Text('Go back',
-                  style: TextStyle(color: CupertinoColors.destructiveRed)),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      );
+      //               // updateCustomerStatus();
+      //             }
+      //           } catch (e) {
+      //             debugPrint('Failed to purchase category!');
+      //           }
+      //           try {
+      //             if (category.id == 'c4' && isSubForTruth == false) {
+      //               await Purchases.purchasePackage(packageForTruth!);
+      //             }
+      //           } catch (e) {
+      //             debugPrint('Failed to purchase category!');
+      //           }
+      //           try {
+      //             if (category.id == 'c11') {
+      //               await Purchases.purchasePackage(packageForRather!);
+      //             }
+      //           } catch (e) {
+      //             debugPrint('Failed to purchase category!');
+      //           }
+      //         },
+      //       ),
+      //       CupertinoActionSheetAction(
+      //         child: const Text('Go back',
+      //             style: TextStyle(color: CupertinoColors.destructiveRed)),
+      //         onPressed: () {
+      //           Navigator.pop(context);
+      //         },
+      //       ),
+      //     ],
+      //   ),
+      // );
     }
   }
 
@@ -230,8 +234,13 @@ class _CategoryScreenState extends State<CategoryScreen>
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
 
+    final Color appBarColor = MyApp.themeNotifier.value == ThemeMode.dark
+        ? CupertinoColors.secondaryLabel
+        : CupertinoColors.inactiveGray;
+
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: appBarColor,
         title: Text(
           'Pick a Category',
           textAlign: TextAlign.center,

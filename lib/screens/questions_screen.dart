@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:herkese_sor/main.dart';
 import 'package:herkese_sor/models/category.dart';
 
 import 'package:herkese_sor/models/question.dart';
@@ -52,6 +53,10 @@ class _QuestionsScreenState extends ConsumerState<QuestionsScreen> {
 
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+
+    final Color appBarColor = MyApp.themeNotifier.value == ThemeMode.dark
+        ? CupertinoColors.secondaryLabel
+        : CupertinoColors.inactiveGray;
 
     Future<void> updateArrayFields(
         String arrayField, String itemToRemove, String itemToAdd) async {
@@ -140,6 +145,7 @@ class _QuestionsScreenState extends ConsumerState<QuestionsScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: appBarColor,
         title: Text(widget.title),
       ),
       body: width < 600 || height > 700
@@ -222,7 +228,7 @@ class _QuestionsScreenState extends ConsumerState<QuestionsScreen> {
                                 );
                               },
                               icon: Icon(
-                                CupertinoIcons.bubble_left_bubble_right,
+                                CupertinoIcons.text_bubble,
                                 size: 32,
                                 color: Theme.of(context)
                                     .colorScheme
@@ -376,7 +382,7 @@ class _QuestionsScreenState extends ConsumerState<QuestionsScreen> {
                               );
                             },
                             icon: Icon(
-                              CupertinoIcons.bubble_left_bubble_right,
+                              CupertinoIcons.text_bubble,
                               size: 40,
                               color:
                                   Theme.of(context).colorScheme.inversePrimary,

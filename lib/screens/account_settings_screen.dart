@@ -21,8 +21,13 @@ class AccountSettingsScreen extends StatelessWidget {
         ? Theme.of(context).colorScheme.inversePrimary
         : Theme.of(context).colorScheme.primary;
 
+    final Color appBarColor = MyApp.themeNotifier.value == ThemeMode.dark
+        ? CupertinoColors.secondaryLabel
+        : CupertinoColors.inactiveGray;
+
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: appBarColor,
         title: const Text('Settings'),
       ),
       body: Center(

@@ -20,9 +20,9 @@ class UserFavoritesScreen extends ConsumerStatefulWidget {
 class _UserFavoritesScreenState extends ConsumerState<UserFavoritesScreen> {
   @override
   Widget build(BuildContext context) {
-    final Color itemsColor = MyApp.themeNotifier.value == ThemeMode.dark
-        ? Theme.of(context).colorScheme.inversePrimary
-        : Theme.of(context).colorScheme.primary;
+    final Color appBarColor = MyApp.themeNotifier.value == ThemeMode.dark
+        ? CupertinoColors.secondaryLabel
+        : CupertinoColors.inactiveGray;
 
     final Color questionColor = MyApp.themeNotifier.value == ThemeMode.dark
         ? Theme.of(context).colorScheme.background
@@ -34,6 +34,7 @@ class _UserFavoritesScreenState extends ConsumerState<UserFavoritesScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: appBarColor,
         title: const Text('Your Favorites'),
       ),
       body: StreamBuilder(
