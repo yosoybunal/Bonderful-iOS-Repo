@@ -74,37 +74,7 @@ class _CategoryScreenState extends State<CategoryScreen>
     super.dispose();
   }
 
-  // Widget lockIcons = Icon(isSubForMost == false || isSubForRather == false || isSubForTruth == false
-  //         ? CupertinoIcons.lock_fill
-  //         : CupertinoIcons.lock_open_fill);
-
-  Widget lockIcon() {
-    if (isSubForMost == false ||
-        isSubForRather == false ||
-        isSubForTruth == false) {
-      return const Icon(CupertinoIcons.lock_fill, size: 20);
-    } else {
-      return const Icon(CupertinoIcons.lock_open_fill, size: 20);
-    }
-    // Widget lockIcon = Icon(
-    //   category.id == 'c3' || category.id == 'c4' || category.id == 'c11'
-    //       ? CupertinoIcons.lock_fill
-    //       : null,
-    //   size: 15.0,
-    // );
-  }
-
   void _selectCategory(BuildContext context, Category category) async {
-    // Offerings offerings = await Purchases.getOfferings();
-
-    // Package? packageForMost =
-    //     offerings.getOffering("Who is most likely")!.lifetime;
-
-    // Package? packageForTruth = offerings.getOffering("Truth or Dare")!.lifetime;
-
-    // Package? packageForRather =
-    //     offerings.getOffering("Would you rather?")!.lifetime;
-
     if (category.id == 'c1' ||
         category.id == 'c2' ||
         category.id == 'c5' ||
@@ -140,60 +110,6 @@ class _CategoryScreenState extends State<CategoryScreen>
           ),
         ),
       );
-      // showCupertinoModalPopup<int>(
-      //   context: context,
-      //   builder: (BuildContext context) => CupertinoActionSheet(
-      //     title: Text(
-      //       'Bonderful Idea!',
-      //       style: GoogleFonts.alef(fontSize: 18)
-      //           .copyWith(color: kColorScheme.inversePrimary),
-      //     ),
-      //     message: Text(
-      //       'You will proceed to unlock this category through App Store.',
-      //       style: GoogleFonts.alef(fontSize: 15),
-      //     ),
-      //     actions: <CupertinoActionSheetAction>[
-      //       CupertinoActionSheetAction(
-      //         child: const Text(
-      //           'Continue',
-      //           style: TextStyle(color: CupertinoColors.link),
-      //         ),
-      //         onPressed: () async {
-      //           try {
-      //             if (category.id == 'c3' && isSubForMost == false) {
-      //               await Purchases.purchasePackage(packageForMost!);
-
-      //               // updateCustomerStatus();
-      //             }
-      //           } catch (e) {
-      //             debugPrint('Failed to purchase category!');
-      //           }
-      //           try {
-      //             if (category.id == 'c4' && isSubForTruth == false) {
-      //               await Purchases.purchasePackage(packageForTruth!);
-      //             }
-      //           } catch (e) {
-      //             debugPrint('Failed to purchase category!');
-      //           }
-      //           try {
-      //             if (category.id == 'c11') {
-      //               await Purchases.purchasePackage(packageForRather!);
-      //             }
-      //           } catch (e) {
-      //             debugPrint('Failed to purchase category!');
-      //           }
-      //         },
-      //       ),
-      //       CupertinoActionSheetAction(
-      //         child: const Text('Go back',
-      //             style: TextStyle(color: CupertinoColors.destructiveRed)),
-      //         onPressed: () {
-      //           Navigator.pop(context);
-      //         },
-      //       ),
-      //     ],
-      //   ),
-      // );
     }
   }
 
@@ -297,7 +213,6 @@ class _CategoryScreenState extends State<CategoryScreen>
                 children: [
                   for (final category in availableCategories)
                     CategoryGridItem(
-                        lockIcon: lockIcon(),
                         category: category,
                         onSelectCategory: () {
                           _selectCategory(context, category);
@@ -329,7 +244,6 @@ class _CategoryScreenState extends State<CategoryScreen>
                 children: [
                   for (final category in availableCategories)
                     CategoryGridItem(
-                        lockIcon: lockIcon(),
                         category: category,
                         onSelectCategory: () {
                           _selectCategory(context, category);
