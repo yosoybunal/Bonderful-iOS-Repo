@@ -46,7 +46,8 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
 
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CupertinoActivityIndicator(
+                  radius: 15.0, color: CupertinoColors.activeBlue),
             );
           }
 

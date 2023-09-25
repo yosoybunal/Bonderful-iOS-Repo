@@ -243,7 +243,7 @@ class _CategoryScreenState extends State<CategoryScreen>
                 Navigator.pop(context);
               },
               child: const Text(
-                'Sign Out',
+                'Log Out',
                 style: TextStyle(color: CupertinoColors.destructiveRed),
               ),
             ),

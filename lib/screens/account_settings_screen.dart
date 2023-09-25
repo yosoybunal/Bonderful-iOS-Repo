@@ -22,13 +22,13 @@ class AccountSettingsScreen extends StatelessWidget {
       builder: (BuildContext context) {
         return CupertinoAlertDialog(
           title: const Text(
-            'You\'re about to log out.',
+            'You\'re about to delete your account.',
             style: TextStyle(
               color: CupertinoDynamicColor.withBrightness(
                   color: Colors.blueGrey, darkColor: Colors.blueGrey),
             ),
           ),
-          content: const Text('Do you wish to log out?'),
+          content: const Text('Do you wish to delete your account?'),
           actions: <Widget>[
             CupertinoDialogAction(
               onPressed: () {
