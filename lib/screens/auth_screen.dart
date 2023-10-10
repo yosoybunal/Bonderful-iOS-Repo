@@ -158,6 +158,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                         validator: (value) {
                                           if (value == null ||
                                               value.trim().isEmpty ||
+                                              value.trim().length < 4 ||
                                               !value.contains('@')) {
                                             return 'Please enter a valid email address!';
                                           }
@@ -181,10 +182,10 @@ class _AuthScreenState extends State<AuthScreen> {
                                         validator: (value) {
                                           if (value == null ||
                                               value.trim().length < 6) {
-                                            return 'Password should at least be 6 characters!';
+                                            return 'Password can be minimum 6 characters!';
                                           }
                                           if (value.trim().length > 10) {
-                                            return 'Password should at most be 10 characters!';
+                                            return 'Password can be maximum 10 characters!';
                                           }
                                           return null;
                                         },
