@@ -4,7 +4,7 @@ This my first Flutter project which users can create users which Firestore Realt
 
 ## UI with Flutter Framework
 
-![image](https://github.com/yosoybunal/Bonderful-iOS-Repo/assets/139717061/0291fcc9-8e20-4d57-b244-535ad19201d5)
+![6 5 inch auth screen](https://github.com/yosoybunal/Bonderful-iOS-Repo/assets/139717061/2c9a7ea7-47bc-4d98-bd20-dc1798d6b744)
 
 
 
