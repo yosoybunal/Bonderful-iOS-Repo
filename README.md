@@ -17,7 +17,7 @@ This is my first Flutter project which users can create users which Firestore Re
   
 * Tests: Integration and unit tests with flutter_test library
 
-## 3rd Party Packages
+## Third Party Packages
 - url_launcher
 - google_fonts
 - purchases_flutter
