@@ -28,7 +28,6 @@ This is my first Flutter project which users can create users which Firestore Re
 
 ## 📷 Previews
 
-### Screens
 <p align="center">
  <img src="https://github.com/yosoybunal/Bonderful-iOS-Repo/assets/139717061/4930f253-c53b-41d3-ae02-fc3fe281f4f8" width="326" height="433" />
  <img src="https://github.com/yosoybunal/Bonderful-iOS-Repo/assets/139717061/65de909b-372c-47ad-8120-8e56c7415c39" width="200" height="433" />
