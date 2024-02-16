@@ -17,7 +17,7 @@ This is my first Flutter project which users can create users which Firestore Re
   
 * Tests: Integration and unit tests with flutter_test library
 
-* Designs & Assets: I made the screen designs via Figma and assets are generated via the Canva's [AI Image Generator](https://www.canva.com/ai-image-generator/)
+* Designs & Assets: I made the screen designs via Figma and assets are generated via Canva's [AI Image Generator](https://www.canva.com/ai-image-generator/)
 
 ## 📦 Third Party Packages
 - url_launcher
