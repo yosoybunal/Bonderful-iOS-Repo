@@ -1,6 +1,6 @@
 # ⚡️ A Social Quiz Game: Bonderful
 
-This is my first Flutter project which users can create users which Firestore Realtime Databse stores the authenticated users. In the app user can select from different categories which include category related questions to ask in a group of friends or in a date night. Users can also create their own lists to group their favorite questions that they can also reach. 
+This is my first Flutter project with which Firestore Realtime Database it stores the authenticated users. In the app user can select from different categories which include category related questions to ask in a group of friends or in a date night. Users can also create their own lists to group their favorite questions that they can also reach. 
 
 ### 🏬 Available on [Apple Store](https://apps.apple.com/tr/app/bonderful/id6466748798)
 ### 🛒 Available on [Play Store](https://play.google.com/store/apps/details?id=com.berkay.bonderful)
